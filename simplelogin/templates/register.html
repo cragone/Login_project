@@ -2,33 +2,34 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Register</title>
 </head>
 <body>
     <h1>WELCOME</h1>
     <div class="container">
-        <h2>Login</h2>
+        <h2>Sign Up Here</h2>
 
-        <form action="/sign_in" method="GET">
+        <form action="/registered" method="GET">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
             <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+       
+            <label for="password">Email:</label>
             <input type="password" id="password" name="password" required>
 
             <div>
                 <button type="submit" id="loginButton" class="btn btn-primary btn-block">Login</button>
             </div>
         </form>
-
-        <a href="/register">register</a>
     </div>
 
     <script>
       function openPage() {
           let username = $("#username").val();
           alert(username);
-          axios.get("/sign_in", {
+          axios.get("/Register", {
               params: {
                   username: username
               }
