@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <meta charset="UTF-8">
     <title>Register</title>
 </head>
@@ -9,39 +11,31 @@
     <div class="container">
         <h2>Sign Up Here</h2>
 
-        <form action="/registered" method="GET">
+        
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
        
-            <label for="password">Email:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
 
             <div>
-                <button type="submit" id="loginButton" class="btn btn-primary btn-block">Login</button>
+                <button id="loginButton" onclick="signUp()" class="btn btn-primary btn-block">Login</button>
             </div>
-        </form>
+        
     </div>
 
     <script>
-      function openPage() {
-          let username = $("#username").val();
-          alert(username);
-          axios.get("/Register", {
-              params: {
-                  username: username
-              }
-          })
-          .then(response => {
-              // Handle the response
-              console.log('Response:', response.data);
-          })
-          .catch(error => {
-              // Handle the error
-              console.error('Error:', error);
-          });
+      function signUp(){
+        let username = $("#username").val();
+        let password = $("#password").val();
+        let email = $("#email").val();
+        axios.post(`/registeruser?username=${username}&password=${password}&email=${email}`)
+        console.log(email)
+        console.log(password)
+        console.log(email)
       }
   </script>
 </body>
