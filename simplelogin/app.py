@@ -1,7 +1,16 @@
 from flask import Flask, render_template, request
+from flask_mail import Mail, Message
 from functions.accounts import storeuserdata
 
 app = Flask(__name__)
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'runclubhousesllc@gmail.com'
+app.config['MAIL_PASSWORD'] = 'wqmccxdqxegmutba'
+app.config['MAIL_DEFAULT_SENDER'] = 'runclubhousesllc@gmail.com'
+mail = Mail(app)
 
 @app.route("/login_page")
 def index():
@@ -27,8 +36,15 @@ def post_userdata():
     email = request.args.get("email",None,str)
     print(username, password, email)
     return storeuserdata(username, password, email)
-      
-    
+
+@app.route('/send_email', methods=['GET','POST'])
+def send_email():
+      if request.method == 'POST':
+          msg = Message("Verify HERE", sender='noreply@runclub.com', recipients=['email'])
+          msg.body = "Welcome to RUNCLUB, please verify email here"
+          mail.send(msg)
+          return "sent email."  
+
     
 
 
