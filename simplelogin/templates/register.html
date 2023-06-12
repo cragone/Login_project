@@ -22,7 +22,8 @@
             <input type="text" id="email" name="email" required>
 
             <div>
-                <button id="loginButton" onclick="signUp()" class="btn btn-primary btn-block">Login</button>
+                <button id="loginButton" onclick="signUp(); emailSend()" class="btn btn-primary btn-block">Login</button>
+
             </div>
         
     </div>
@@ -37,6 +38,12 @@
         console.log(password)
         console.log(email)
       }
+      //function that stores info in database
+      function emailSend(){
+        let email = $('#email').val();
+        axios.get('/send_email')
+      }
+      //I want to send an email to email entered
   </script>
 </body>
 </html>
