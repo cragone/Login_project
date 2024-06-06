@@ -13,9 +13,6 @@ app.config['MAIL_PASSWORD'] = 'wqmccxdqxegmutba'
 app.config['MAIL_DEFAULT_SENDER'] = 'runclubhousesllc@gmail.com'
 mail = Mail(app)
 
-@app.route("/login_page")
-def index():
-    return render_template("login_page.html")
 
 @app.route('/sign_in', methods=['POST', 'GET'])
 def sign_in():
@@ -32,14 +29,6 @@ def sign_in():
         return 'Invalid request method'
 
 
-@app.route('/home')
-def home_page():
-    return render_template('home_page.html')
-
-
-@app.route('/register', methods=['GET'])
-def reg_page():
-    return render_template("register.html")
 
 @app.route('/registeruser', methods=['POST', 'GET'])
 def post_userdata():
